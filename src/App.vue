@@ -1,26 +1,32 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <body>
+    <the-header></the-header>
+    <my-canvas></my-canvas>
+  </body>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import MyCanvas from "./components/MyCanvas.vue";
+import TheHeader from "./components/TheHeader.vue";
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    MyCanvas,
+    TheHeader,
+  },
+  data() {
+    return {};
+  },
+  methods: {},
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgb(0, 0, 0);
 }
 </style>
