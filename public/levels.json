@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Level 1",
+    "sum": 40,
+    "description": "Fact: Forty is the only number in English which has its letters in alphabetical order."
+  },
+  {
+    "name": "Level 2",
+    "sum": 97,
+    "description": "Fact: 97 is the 25th prime number (the largest two-digit prime number in base 10), following 89 and preceding 101."
+  },
+  {
+    "name": "Level 3",
+    "sum": 32,
+    "description": "Fact: Jesus is said to have been crucified in Year 32."
+  },
+  {
+    "name": "Level 4",
+    "sum": 68,
+    "description": "Fact: 68 is the largest even number that can be expressed in two ways as the sum of two prime numbers: 68 = 7 + 61 = 31 + 37. 5."
+  },
+  {
+    "name": "Level 5",
+    "sum": 101,
+    "description": "Fact: 101 is the 26th prime number. a palindromic number in base 10, and so a palindromic prime."
+  },
+  {
+    "name": "Level 6",
+    "sum": 17,
+    "description": "Fact: According to research done by MIT the number 17 is the most common randomly chosen number between 1 and 20."
+  },
+  {
+    "name": "Level 7",
+    "sum": 69,
+    "description": "Fact: 69 is the Internet’s Coolest Number."
+  },
+  {
+    "name": "Level 8",
+    "sum": 12,
+    "description": "Fact: There are twelve pairs of ribs in the human body – normally."
+  },
+  {
+    "name": "Level 9",
+    "sum": 81,
+    "description": "Fact: 81 is a perfect totient number like all powers of three"
+  },
+  {
+    "name": "Level 10",
+    "sum": 22,
+    "description": "Fact: The 22nd Summer Olympics were held in 1980 in previously Soviet Union Moscow, now Russia. "
+  }
+]

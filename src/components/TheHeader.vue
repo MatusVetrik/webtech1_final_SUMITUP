@@ -14,8 +14,7 @@
     <section>
       <span
         >Welocome my friend. I've got here for you one of these mathematic logic
-        games. Point of this game is to add, distract, multiply or divide (one
-        of those 4 picked by current level) two numbers and get searched result
+        games. Point of this game is to add two numbers and get searched result
         (picked by current level). You can make operation by drag and droping
         numbers into marked area at right side of the canvas below. If your 2
         picked numbers are correct by current operation, area will turn green
@@ -71,17 +70,9 @@ span {
   font-size: 1.4em;
   word-spacing: 0.5rem;
 }
-/* #left {
-  position: absolute;
-  top: 15%;
-  width: 1rem;
-  height: 2rem;
-  background: white;
+@media print {
+  #wrap {
+    width: 90%;
+  }
 }
-#right {
-  position: absolute;
-  width: 1rem;
-  height: 1rem;
-  background: black;
-} */
 </style>

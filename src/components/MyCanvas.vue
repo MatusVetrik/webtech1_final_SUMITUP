@@ -5,8 +5,16 @@
     href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,700&family=Shizuru&display=swap"
     rel="stylesheet"
   />
-  <div id="center">
-    <div id="info">{{ toFind }}</div>
+  <div class="center">
+    <div class="info">
+      {{ level }}. Your task is to add two numbers to be equal to
+      <span id="bigger">{{ toFind }}</span> .
+    </div>
+    <div class="info center">
+      <div id="fact">
+        {{ description }}
+      </div>
+    </div>
     <div ref="container" class="wrapper"></div>
   </div>
 </template>
@@ -22,10 +30,17 @@ export default {
       windowWidth: 100,
       windowHeight: 100,
       sum: [],
-      toFind: 10,
+      solved: 0,
+      toFind: 4,
+      numOfObjects: 10,
+      level: 0,
+      fetchedLevels: [],
+      finishedLevels: [],
+      description: "",
     };
   },
   mounted() {
+    this.fetchJson();
     this.stage = new Konva.Stage({
       container: this.$refs.container,
       width: this.windowWidth,
@@ -36,7 +51,6 @@ export default {
     this.setCanvasResponsive();
     window.addEventListener("resize", this.setCanvasResponsive);
     this.sumContainer();
-    this.generateSetOfNumbers();
     this.stage.on("dragend", (event) => this.controlSum(event));
   },
   methods: {
@@ -65,12 +79,11 @@ export default {
       this.layer.add(this.container);
     },
     generateSetOfNumbers() {
-      for (let i = 0; i < 10; i++) {
+      for (let i = 0; i < this.numOfObjects; i++) {
         const rand = Math.trunc(Math.random() * (this.toFind / 2)) + 1;
         this.generateNumber(rand);
         this.generateNumber(this.toFind - rand);
       }
-      console.log(this.layer);
     },
     generateNumber(innerNum) {
       const [r, g, b] = [
@@ -79,7 +92,7 @@ export default {
         Math.random() * 200 + 25,
       ];
       const num = new Konva.Label({
-        x: this.windowWidth * (Math.random() * 0.5) + 40,
+        x: this.windowWidth * (Math.random() * 0.3) + 40,
         y: this.windowHeight * (Math.random() * 0.38) + 40,
         draggable: true,
         hitStrokeWidth: 20,
@@ -102,7 +115,6 @@ export default {
       this.layer.add(num);
     },
     controlSum(event) {
-      console.log(event.target);
       if (event.target.attrs.x > this.windowWidth * 0.6) {
         if (this.sum[0]) {
           const add =
@@ -115,6 +127,7 @@ export default {
             this.layer.batchDraw();
             this.sum = [];
             this.container.fill("green");
+            this.isSolved();
           } else {
             this.sum[0].attrs.x = 0;
             this.sum[0].attrs.y = 0;
@@ -140,12 +153,49 @@ export default {
         }, 2000);
       }
     },
+    isSolved() {
+      this.solved++;
+      if (this.solved >= this.numOfObjects) {
+        this.searchLevel();
+      }
+    },
+    fetchJson() {
+      if (localStorage.getItem("levels")) {
+        this.finishedLevels = JSON.parse(localStorage.getItem("levels"));
+      }
+      fetch("../levels.json")
+        .then((res) => res.json())
+        .then((data) => {
+          this.fetchedLevels.push(...data);
+          this.searchLevel();
+        });
+    },
+    searchLevel() {
+      if (this.finishedLevels.length >= 10) {
+        this.finishedLevels = [];
+      }
+      let rand = Math.trunc(Math.random() * 10);
+      if (
+        this.finishedLevels.find(
+          (el) => el.name === this.fetchedLevels[rand].name
+        )
+      ) {
+        this.searchLevel();
+      } else {
+        this.finishedLevels.push(this.fetchedLevels[rand]);
+        localStorage.setItem("levels", JSON.stringify(this.finishedLevels));
+        this.level = this.fetchedLevels[rand].name;
+        this.toFind = this.fetchedLevels[rand].sum;
+        this.description = this.fetchedLevels[rand].description;
+        this.generateSetOfNumbers();
+      }
+    },
   },
 };
 </script>
 
 <style scoped>
-#center {
+.center {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -156,7 +206,7 @@ export default {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.459);
   border-radius: 0 0 5rem 5rem;
 }
-#info {
+.info {
   width: 98.7%;
   padding: 1rem;
   margin-bottom: 1rem;
@@ -164,7 +214,18 @@ export default {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.247);
   text-align: center;
   font-family: "Merriweather", serif;
-  font-size: 1.2em;
+  font-size: 1.4em;
   background: linear-gradient(to right, white, rgb(183, 0, 255), white);
+}
+#bigger {
+  font-size: 1.4em;
+}
+#fact {
+  width: 40%;
+}
+@media print {
+  .wrapper {
+    visibility: hidden;
+  }
 }
 </style>
