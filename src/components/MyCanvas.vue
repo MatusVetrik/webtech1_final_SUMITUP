@@ -10,7 +10,7 @@
       {{ level }}. Your task is to add two numbers to be equal to
       <span id="bigger">{{ toFind }}</span> .
     </div>
-    <div class="info center">
+    <div class="info center info2">
       <div id="fact">
         {{ description }}
       </div>
@@ -92,8 +92,8 @@ export default {
         Math.random() * 200 + 25,
       ];
       const num = new Konva.Label({
-        x: this.windowWidth * (Math.random() * 0.3) + 40,
-        y: this.windowHeight * (Math.random() * 0.38) + 40,
+        x: this.windowWidth * (Math.random() * 0.2) + 40,
+        y: this.windowHeight * (Math.random() * 0.3) + 40,
         draggable: true,
         hitStrokeWidth: 20,
       });
@@ -163,7 +163,7 @@ export default {
       if (localStorage.getItem("levels")) {
         this.finishedLevels = JSON.parse(localStorage.getItem("levels"));
       }
-      fetch("../levels.json")
+      fetch("./levels.json")
         .then((res) => res.json())
         .then((data) => {
           this.fetchedLevels.push(...data);
@@ -205,9 +205,11 @@ export default {
   background-color: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.459);
   border-radius: 0 0 5rem 5rem;
+  border: 5px solid black;
+  width: 100vw;
 }
 .info {
-  width: 98.7%;
+  width: 60%;
   padding: 1rem;
   margin-bottom: 1rem;
   color: white;
@@ -215,8 +217,18 @@ export default {
   text-align: center;
   font-family: "Merriweather", serif;
   font-size: 1.4em;
-  background: linear-gradient(to right, white, rgb(183, 0, 255), white);
+  background: black;
+  border-radius: 0 0 2rem 2rem;
+  border: 5px solid white;
+  border-top: 0;
 }
+
+.info2 {
+  width: 98vw;
+  border-radius: 0;
+  border-top: 5px solid white;
+}
+
 #bigger {
   font-size: 1.4em;
 }

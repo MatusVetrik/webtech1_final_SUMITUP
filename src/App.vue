@@ -27,6 +27,6 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: rgb(0, 0, 0);
+  background: rgb(184, 141, 224);
 }
 </style>

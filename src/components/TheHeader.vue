@@ -46,23 +46,27 @@ section {
   justify-content: center;
   flex-direction: column;
   text-align: center;
-  width: 45%;
+  width: 70%;
   padding: 1rem;
   padding-bottom: 2rem;
 }
 #header {
-  width: 100%;
-  background: linear-gradient(to right, white, rgb(183, 0, 255), white);
+  width: 100vw;
+  background: black;
+  margin-top: -2.5%;
+  border-bottom: 5px solid white;
 }
 #wrap {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(to right, white, rgb(183, 0, 255), white);
+  background: black;
   color: white;
-  margin: 1rem 0 1rem 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.247);
-  width: 100%;
+  width: 80%;
+  border-radius: 0 0 2rem 2rem;
+  border: 5px solid white;
+  border-top: 0;
 }
 span {
   line-break: auto;
